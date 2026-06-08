@@ -15,7 +15,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd classroom
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Build Android Release
         run: |
@@ -27,5 +27,4 @@ jobs:
         with:
           name: app-release
           path: classroom/android/app/build/outputs/apk/release/app-release.apk
-
 
