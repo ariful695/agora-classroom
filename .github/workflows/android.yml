@@ -1,3 +1,5 @@
+
+:
 name: Android Build
 on: [push]
 jobs:
@@ -6,10 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'temurin'
 
       - name: Install Dependencies
@@ -17,10 +19,13 @@ jobs:
           cd classroom
           npm install --legacy-peer-deps
 
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x classroom/android/gradlew
+
       - name: Build Android Release
         run: |
           cd classroom/android
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
