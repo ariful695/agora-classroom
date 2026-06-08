@@ -17,6 +17,11 @@ jobs:
           cd classroom
           npm install --legacy-peer-deps
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+
       - name: Grant Execute Permission for Gradlew
         run: chmod +x classroom/android/gradlew
 
@@ -30,3 +35,4 @@ jobs:
         with:
           name: app-release
           path: classroom/android/app/build/outputs/apk/release/app-release.apk
+
